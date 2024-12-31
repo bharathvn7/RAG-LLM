@@ -13,3 +13,14 @@ load_dotenv()
 client = OpenAI()
 
 # Define a request
+print(Fore.GREEN + "Requesting the model to generate a response...")
+
+completion = client.chat.completions.create(
+    model = "gpt-3.5-turbo",
+    messages=[
+        {"role": "system", "content": "You are a funny assistant, skilled in telling 2-sentence jokes about the topic given"},
+        {"role": "user", "content": "Tell me a joke about the topic 'Python'"}
+    ]
+)
+
+print(Fore.BLUE + completion.choices[0].message.content)
